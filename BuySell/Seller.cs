@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BuySell
 {
-    internal class Seller
+    public class Seller
     {
+        //public int Id { get; set; }
         public string ProductName { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
@@ -15,5 +16,16 @@ namespace BuySell
         public string PaymentType { get; set; }
         public string Contact { get; set; }
         public string Note { get; set; }
+
+        public Seller(string productName, int quantity, decimal price, string deliveryTerms, string paymentType, string contact, string note)
+        {
+            ProductName = productName;
+            Quantity = quantity;
+            Price = price;
+            DeliveryTerms = deliveryTerms;
+            PaymentType = paymentType;
+            Contact = contact;
+            Note = note;
+        }
     }
 }

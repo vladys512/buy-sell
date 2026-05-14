@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BuySell
 {
-    internal class Buyer
+    public class Buyer
     {
+        public int Id { get; set; }
         public string ProductName { get; set; }
         public int Quantity { get; set; }
         public decimal MaxPrice { get; set; }
