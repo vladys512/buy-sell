@@ -31,17 +31,10 @@
             components = new System.ComponentModel.Container();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            button2 = new Button();
+            FindBuyersBtn = new Button();
+            DeleteSellerBtn = new Button();
             AddSeller = new Button();
             dgvSellers = new DataGridView();
-            sellerBindingSource = new BindingSource(components);
-            tabPage2 = new TabPage();
-            button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
-            dataGridView2 = new DataGridView();
-            tabPage3 = new TabPage();
-            tabPage4 = new TabPage();
             productNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             quantityDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             priceDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -49,12 +42,27 @@
             paymentTypeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             contactDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             noteDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            sellerBindingSource = new BindingSource(components);
+            tabPage2 = new TabPage();
+            dgvBuyers = new DataGridView();
+            productNameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            quantityDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            maxPriceDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            paymentTypeDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            contactDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            noteDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            buyerBindingSource = new BindingSource(components);
+            DeleteBuyerBtn = new Button();
+            AddBuyerBtn = new Button();
+            tabPage3 = new TabPage();
+            tabPage4 = new TabPage();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSellers).BeginInit();
             ((System.ComponentModel.ISupportInitialize)sellerBindingSource).BeginInit();
             tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvBuyers).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)buyerBindingSource).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -67,32 +75,42 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(800, 450);
+            tabControl1.Size = new Size(902, 453);
             tabControl1.TabIndex = 6;
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(button2);
+            tabPage1.Controls.Add(FindBuyersBtn);
+            tabPage1.Controls.Add(DeleteSellerBtn);
             tabPage1.Controls.Add(AddSeller);
             tabPage1.Controls.Add(dgvSellers);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(792, 417);
+            tabPage1.Size = new Size(894, 420);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Продавці";
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
             // 
-            // button2
+            // FindBuyersBtn
             // 
-            button2.Location = new Point(148, 6);
-            button2.Name = "button2";
-            button2.Size = new Size(136, 44);
-            button2.TabIndex = 2;
-            button2.Text = "Видалити";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            FindBuyersBtn.Location = new Point(6, 360);
+            FindBuyersBtn.Name = "FindBuyersBtn";
+            FindBuyersBtn.Size = new Size(878, 54);
+            FindBuyersBtn.TabIndex = 3;
+            FindBuyersBtn.Text = "Пошук покупців";
+            FindBuyersBtn.UseVisualStyleBackColor = true;
+            // 
+            // DeleteSellerBtn
+            // 
+            DeleteSellerBtn.Location = new Point(148, 6);
+            DeleteSellerBtn.Name = "DeleteSellerBtn";
+            DeleteSellerBtn.Size = new Size(136, 44);
+            DeleteSellerBtn.TabIndex = 2;
+            DeleteSellerBtn.Text = "Видалити";
+            DeleteSellerBtn.UseVisualStyleBackColor = true;
+            DeleteSellerBtn.Click += DeleteSellerBtn_Click;
             // 
             // AddSeller
             // 
@@ -112,81 +130,12 @@
             dgvSellers.DataSource = sellerBindingSource;
             dgvSellers.Location = new Point(6, 56);
             dgvSellers.Name = "dgvSellers";
+            dgvSellers.ReadOnly = true;
+            dgvSellers.RowHeadersVisible = false;
             dgvSellers.RowHeadersWidth = 51;
-            dgvSellers.Size = new Size(776, 339);
+            dgvSellers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvSellers.Size = new Size(878, 298);
             dgvSellers.TabIndex = 0;
-            // 
-            // sellerBindingSource
-            // 
-            sellerBindingSource.DataSource = typeof(Seller);
-            // 
-            // tabPage2
-            // 
-            tabPage2.Controls.Add(button6);
-            tabPage2.Controls.Add(button5);
-            tabPage2.Controls.Add(button4);
-            tabPage2.Controls.Add(dataGridView2);
-            tabPage2.Location = new Point(4, 29);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(792, 417);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Покупці";
-            tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            button6.Location = new Point(290, 6);
-            button6.Name = "button6";
-            button6.Size = new Size(136, 44);
-            button6.TabIndex = 4;
-            button6.Text = "button6";
-            button6.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(148, 6);
-            button5.Name = "button5";
-            button5.Size = new Size(136, 44);
-            button5.TabIndex = 3;
-            button5.Text = "button5";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(6, 6);
-            button4.Name = "button4";
-            button4.Size = new Size(136, 44);
-            button4.TabIndex = 2;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView2
-            // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(6, 56);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(776, 339);
-            dataGridView2.TabIndex = 1;
-            // 
-            // tabPage3
-            // 
-            tabPage3.Location = new Point(4, 29);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(792, 417);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "Пошук варіантів";
-            tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            tabPage4.Location = new Point(4, 29);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(792, 417);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "Архів";
-            tabPage4.UseVisualStyleBackColor = true;
             // 
             // productNameDataGridViewTextBoxColumn
             // 
@@ -194,6 +143,8 @@
             productNameDataGridViewTextBoxColumn.HeaderText = "Товар";
             productNameDataGridViewTextBoxColumn.MinimumWidth = 6;
             productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
+            productNameDataGridViewTextBoxColumn.ReadOnly = true;
+            productNameDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
             productNameDataGridViewTextBoxColumn.Width = 125;
             // 
             // quantityDataGridViewTextBoxColumn
@@ -202,6 +153,7 @@
             quantityDataGridViewTextBoxColumn.HeaderText = "Обсяг партії";
             quantityDataGridViewTextBoxColumn.MinimumWidth = 6;
             quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            quantityDataGridViewTextBoxColumn.ReadOnly = true;
             quantityDataGridViewTextBoxColumn.Width = 125;
             // 
             // priceDataGridViewTextBoxColumn
@@ -210,6 +162,7 @@
             priceDataGridViewTextBoxColumn.HeaderText = "Ціна";
             priceDataGridViewTextBoxColumn.MinimumWidth = 6;
             priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            priceDataGridViewTextBoxColumn.ReadOnly = true;
             priceDataGridViewTextBoxColumn.Width = 125;
             // 
             // deliveryTermsDataGridViewTextBoxColumn
@@ -218,6 +171,7 @@
             deliveryTermsDataGridViewTextBoxColumn.HeaderText = "Умови";
             deliveryTermsDataGridViewTextBoxColumn.MinimumWidth = 6;
             deliveryTermsDataGridViewTextBoxColumn.Name = "deliveryTermsDataGridViewTextBoxColumn";
+            deliveryTermsDataGridViewTextBoxColumn.ReadOnly = true;
             deliveryTermsDataGridViewTextBoxColumn.Width = 125;
             // 
             // paymentTypeDataGridViewTextBoxColumn
@@ -226,6 +180,7 @@
             paymentTypeDataGridViewTextBoxColumn.HeaderText = "Форма оплати";
             paymentTypeDataGridViewTextBoxColumn.MinimumWidth = 6;
             paymentTypeDataGridViewTextBoxColumn.Name = "paymentTypeDataGridViewTextBoxColumn";
+            paymentTypeDataGridViewTextBoxColumn.ReadOnly = true;
             paymentTypeDataGridViewTextBoxColumn.Width = 125;
             // 
             // contactDataGridViewTextBoxColumn
@@ -234,6 +189,7 @@
             contactDataGridViewTextBoxColumn.HeaderText = "Контакти";
             contactDataGridViewTextBoxColumn.MinimumWidth = 6;
             contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
+            contactDataGridViewTextBoxColumn.ReadOnly = true;
             contactDataGridViewTextBoxColumn.Width = 125;
             // 
             // noteDataGridViewTextBoxColumn
@@ -242,23 +198,145 @@
             noteDataGridViewTextBoxColumn.HeaderText = "Примітки";
             noteDataGridViewTextBoxColumn.MinimumWidth = 6;
             noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
+            noteDataGridViewTextBoxColumn.ReadOnly = true;
             noteDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // sellerBindingSource
+            // 
+            sellerBindingSource.DataSource = typeof(Seller);
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(dgvBuyers);
+            tabPage2.Controls.Add(DeleteBuyerBtn);
+            tabPage2.Controls.Add(AddBuyerBtn);
+            tabPage2.Location = new Point(4, 29);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(894, 420);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Покупці";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dgvBuyers
+            // 
+            dgvBuyers.AutoGenerateColumns = false;
+            dgvBuyers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvBuyers.Columns.AddRange(new DataGridViewColumn[] { productNameDataGridViewTextBoxColumn1, quantityDataGridViewTextBoxColumn1, maxPriceDataGridViewTextBoxColumn, paymentTypeDataGridViewTextBoxColumn1, contactDataGridViewTextBoxColumn1, noteDataGridViewTextBoxColumn1 });
+            dgvBuyers.DataSource = buyerBindingSource;
+            dgvBuyers.Location = new Point(6, 56);
+            dgvBuyers.Name = "dgvBuyers";
+            dgvBuyers.RowHeadersVisible = false;
+            dgvBuyers.RowHeadersWidth = 51;
+            dgvBuyers.Size = new Size(878, 298);
+            dgvBuyers.TabIndex = 4;
+            // 
+            // productNameDataGridViewTextBoxColumn1
+            // 
+            productNameDataGridViewTextBoxColumn1.DataPropertyName = "ProductName";
+            productNameDataGridViewTextBoxColumn1.HeaderText = "ProductName";
+            productNameDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            productNameDataGridViewTextBoxColumn1.Name = "productNameDataGridViewTextBoxColumn1";
+            productNameDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // quantityDataGridViewTextBoxColumn1
+            // 
+            quantityDataGridViewTextBoxColumn1.DataPropertyName = "Quantity";
+            quantityDataGridViewTextBoxColumn1.HeaderText = "Quantity";
+            quantityDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            quantityDataGridViewTextBoxColumn1.Name = "quantityDataGridViewTextBoxColumn1";
+            quantityDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // maxPriceDataGridViewTextBoxColumn
+            // 
+            maxPriceDataGridViewTextBoxColumn.DataPropertyName = "MaxPrice";
+            maxPriceDataGridViewTextBoxColumn.HeaderText = "MaxPrice";
+            maxPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            maxPriceDataGridViewTextBoxColumn.Name = "maxPriceDataGridViewTextBoxColumn";
+            maxPriceDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // paymentTypeDataGridViewTextBoxColumn1
+            // 
+            paymentTypeDataGridViewTextBoxColumn1.DataPropertyName = "PaymentType";
+            paymentTypeDataGridViewTextBoxColumn1.HeaderText = "PaymentType";
+            paymentTypeDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            paymentTypeDataGridViewTextBoxColumn1.Name = "paymentTypeDataGridViewTextBoxColumn1";
+            paymentTypeDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // contactDataGridViewTextBoxColumn1
+            // 
+            contactDataGridViewTextBoxColumn1.DataPropertyName = "Contact";
+            contactDataGridViewTextBoxColumn1.HeaderText = "Contact";
+            contactDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            contactDataGridViewTextBoxColumn1.Name = "contactDataGridViewTextBoxColumn1";
+            contactDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // noteDataGridViewTextBoxColumn1
+            // 
+            noteDataGridViewTextBoxColumn1.DataPropertyName = "Note";
+            noteDataGridViewTextBoxColumn1.HeaderText = "Note";
+            noteDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            noteDataGridViewTextBoxColumn1.Name = "noteDataGridViewTextBoxColumn1";
+            noteDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // buyerBindingSource
+            // 
+            buyerBindingSource.DataSource = typeof(Buyer);
+            // 
+            // DeleteBuyerBtn
+            // 
+            DeleteBuyerBtn.Location = new Point(148, 6);
+            DeleteBuyerBtn.Name = "DeleteBuyerBtn";
+            DeleteBuyerBtn.Size = new Size(136, 44);
+            DeleteBuyerBtn.TabIndex = 3;
+            DeleteBuyerBtn.Text = "Видалити";
+            DeleteBuyerBtn.UseVisualStyleBackColor = true;
+            DeleteBuyerBtn.Click += DeleteBuyerBtn_Click;
+            // 
+            // AddBuyerBtn
+            // 
+            AddBuyerBtn.Location = new Point(6, 6);
+            AddBuyerBtn.Name = "AddBuyerBtn";
+            AddBuyerBtn.Size = new Size(136, 44);
+            AddBuyerBtn.TabIndex = 2;
+            AddBuyerBtn.Text = "Додати";
+            AddBuyerBtn.UseVisualStyleBackColor = true;
+            AddBuyerBtn.Click += AddBuyerBtn_Click;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Location = new Point(4, 29);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(894, 420);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Пошук варіантів";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            tabPage4.Location = new Point(4, 29);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Size = new Size(894, 420);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "Архів";
+            tabPage4.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(902, 453);
             Controls.Add(tabControl1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Біржа товарів";
             Load += Form1_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvSellers).EndInit();
             ((System.ComponentModel.ISupportInitialize)sellerBindingSource).EndInit();
             tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvBuyers).EndInit();
+            ((System.ComponentModel.ISupportInitialize)buyerBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -269,13 +347,11 @@
         private TabPage tabPage2;
         private TabPage tabPage3;
         private TabPage tabPage4;
-        private Button button2;
+        private Button DeleteSellerBtn;
         private Button AddSeller;
         private DataGridView dgvSellers;
-        private DataGridView dataGridView2;
-        private Button button6;
-        private Button button5;
-        private Button button4;
+        private Button DeleteBuyerBtn;
+        private Button AddBuyerBtn;
         private BindingSource sellerBindingSource;
         private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
@@ -284,5 +360,15 @@
         private DataGridViewTextBoxColumn paymentTypeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private Button FindBuyersBtn;
+        private DataGridView dgvBuyers;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn maxPriceDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn paymentTypeDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn1;
+        private BindingSource buyerBindingSource;
     }
 }
