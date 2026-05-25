@@ -44,6 +44,7 @@
             noteDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             sellerBindingSource = new BindingSource(components);
             tabPage2 = new TabPage();
+            FindSellersBtn = new Button();
             dgvBuyers = new DataGridView();
             productNameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             quantityDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
@@ -95,6 +96,7 @@
             // 
             // FindBuyersBtn
             // 
+            FindBuyersBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             FindBuyersBtn.Location = new Point(6, 360);
             FindBuyersBtn.Name = "FindBuyersBtn";
             FindBuyersBtn.Size = new Size(878, 54);
@@ -124,7 +126,9 @@
             // 
             // dgvSellers
             // 
+            dgvSellers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvSellers.AutoGenerateColumns = false;
+            dgvSellers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSellers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSellers.Columns.AddRange(new DataGridViewColumn[] { productNameDataGridViewTextBoxColumn, quantityDataGridViewTextBoxColumn, priceDataGridViewTextBoxColumn, deliveryTermsDataGridViewTextBoxColumn, paymentTypeDataGridViewTextBoxColumn, contactDataGridViewTextBoxColumn, noteDataGridViewTextBoxColumn });
             dgvSellers.DataSource = sellerBindingSource;
@@ -145,7 +149,6 @@
             productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
             productNameDataGridViewTextBoxColumn.ReadOnly = true;
             productNameDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
-            productNameDataGridViewTextBoxColumn.Width = 125;
             // 
             // quantityDataGridViewTextBoxColumn
             // 
@@ -154,7 +157,6 @@
             quantityDataGridViewTextBoxColumn.MinimumWidth = 6;
             quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
             quantityDataGridViewTextBoxColumn.ReadOnly = true;
-            quantityDataGridViewTextBoxColumn.Width = 125;
             // 
             // priceDataGridViewTextBoxColumn
             // 
@@ -163,7 +165,6 @@
             priceDataGridViewTextBoxColumn.MinimumWidth = 6;
             priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
             priceDataGridViewTextBoxColumn.ReadOnly = true;
-            priceDataGridViewTextBoxColumn.Width = 125;
             // 
             // deliveryTermsDataGridViewTextBoxColumn
             // 
@@ -172,7 +173,6 @@
             deliveryTermsDataGridViewTextBoxColumn.MinimumWidth = 6;
             deliveryTermsDataGridViewTextBoxColumn.Name = "deliveryTermsDataGridViewTextBoxColumn";
             deliveryTermsDataGridViewTextBoxColumn.ReadOnly = true;
-            deliveryTermsDataGridViewTextBoxColumn.Width = 125;
             // 
             // paymentTypeDataGridViewTextBoxColumn
             // 
@@ -181,7 +181,6 @@
             paymentTypeDataGridViewTextBoxColumn.MinimumWidth = 6;
             paymentTypeDataGridViewTextBoxColumn.Name = "paymentTypeDataGridViewTextBoxColumn";
             paymentTypeDataGridViewTextBoxColumn.ReadOnly = true;
-            paymentTypeDataGridViewTextBoxColumn.Width = 125;
             // 
             // contactDataGridViewTextBoxColumn
             // 
@@ -190,7 +189,6 @@
             contactDataGridViewTextBoxColumn.MinimumWidth = 6;
             contactDataGridViewTextBoxColumn.Name = "contactDataGridViewTextBoxColumn";
             contactDataGridViewTextBoxColumn.ReadOnly = true;
-            contactDataGridViewTextBoxColumn.Width = 125;
             // 
             // noteDataGridViewTextBoxColumn
             // 
@@ -199,7 +197,6 @@
             noteDataGridViewTextBoxColumn.MinimumWidth = 6;
             noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
             noteDataGridViewTextBoxColumn.ReadOnly = true;
-            noteDataGridViewTextBoxColumn.Width = 125;
             // 
             // sellerBindingSource
             // 
@@ -207,6 +204,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(FindSellersBtn);
             tabPage2.Controls.Add(dgvBuyers);
             tabPage2.Controls.Add(DeleteBuyerBtn);
             tabPage2.Controls.Add(AddBuyerBtn);
@@ -218,16 +216,30 @@
             tabPage2.Text = "Покупці";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // FindSellersBtn
+            // 
+            FindSellersBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            FindSellersBtn.Location = new Point(6, 360);
+            FindSellersBtn.Name = "FindSellersBtn";
+            FindSellersBtn.Size = new Size(878, 54);
+            FindSellersBtn.TabIndex = 5;
+            FindSellersBtn.Text = "Пошук покупців";
+            FindSellersBtn.UseVisualStyleBackColor = true;
+            // 
             // dgvBuyers
             // 
+            dgvBuyers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvBuyers.AutoGenerateColumns = false;
+            dgvBuyers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBuyers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBuyers.Columns.AddRange(new DataGridViewColumn[] { productNameDataGridViewTextBoxColumn1, quantityDataGridViewTextBoxColumn1, maxPriceDataGridViewTextBoxColumn, paymentTypeDataGridViewTextBoxColumn1, contactDataGridViewTextBoxColumn1, noteDataGridViewTextBoxColumn1 });
             dgvBuyers.DataSource = buyerBindingSource;
             dgvBuyers.Location = new Point(6, 56);
             dgvBuyers.Name = "dgvBuyers";
+            dgvBuyers.ReadOnly = true;
             dgvBuyers.RowHeadersVisible = false;
             dgvBuyers.RowHeadersWidth = 51;
+            dgvBuyers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBuyers.Size = new Size(878, 298);
             dgvBuyers.TabIndex = 4;
             // 
@@ -237,7 +249,7 @@
             productNameDataGridViewTextBoxColumn1.HeaderText = "ProductName";
             productNameDataGridViewTextBoxColumn1.MinimumWidth = 6;
             productNameDataGridViewTextBoxColumn1.Name = "productNameDataGridViewTextBoxColumn1";
-            productNameDataGridViewTextBoxColumn1.Width = 125;
+            productNameDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // quantityDataGridViewTextBoxColumn1
             // 
@@ -245,7 +257,7 @@
             quantityDataGridViewTextBoxColumn1.HeaderText = "Quantity";
             quantityDataGridViewTextBoxColumn1.MinimumWidth = 6;
             quantityDataGridViewTextBoxColumn1.Name = "quantityDataGridViewTextBoxColumn1";
-            quantityDataGridViewTextBoxColumn1.Width = 125;
+            quantityDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // maxPriceDataGridViewTextBoxColumn
             // 
@@ -253,7 +265,7 @@
             maxPriceDataGridViewTextBoxColumn.HeaderText = "MaxPrice";
             maxPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
             maxPriceDataGridViewTextBoxColumn.Name = "maxPriceDataGridViewTextBoxColumn";
-            maxPriceDataGridViewTextBoxColumn.Width = 125;
+            maxPriceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // paymentTypeDataGridViewTextBoxColumn1
             // 
@@ -261,7 +273,7 @@
             paymentTypeDataGridViewTextBoxColumn1.HeaderText = "PaymentType";
             paymentTypeDataGridViewTextBoxColumn1.MinimumWidth = 6;
             paymentTypeDataGridViewTextBoxColumn1.Name = "paymentTypeDataGridViewTextBoxColumn1";
-            paymentTypeDataGridViewTextBoxColumn1.Width = 125;
+            paymentTypeDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // contactDataGridViewTextBoxColumn1
             // 
@@ -269,7 +281,7 @@
             contactDataGridViewTextBoxColumn1.HeaderText = "Contact";
             contactDataGridViewTextBoxColumn1.MinimumWidth = 6;
             contactDataGridViewTextBoxColumn1.Name = "contactDataGridViewTextBoxColumn1";
-            contactDataGridViewTextBoxColumn1.Width = 125;
+            contactDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // noteDataGridViewTextBoxColumn1
             // 
@@ -277,7 +289,7 @@
             noteDataGridViewTextBoxColumn1.HeaderText = "Note";
             noteDataGridViewTextBoxColumn1.MinimumWidth = 6;
             noteDataGridViewTextBoxColumn1.Name = "noteDataGridViewTextBoxColumn1";
-            noteDataGridViewTextBoxColumn1.Width = 125;
+            noteDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // buyerBindingSource
             // 
@@ -370,5 +382,6 @@
         private DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn1;
         private BindingSource buyerBindingSource;
+        private Button FindSellersBtn;
     }
 }

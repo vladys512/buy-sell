@@ -72,7 +72,20 @@ namespace BuySell
 
         private void DeleteBuyerBtn_Click(object sender, EventArgs e)
         {
+            if (dgvBuyers.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Виберіть покупця для видалення");
+                return;
+            }
 
+            int index = dgvBuyers.SelectedRows[0].Index;
+            var result = MessageBox.Show("Ви впевнені, що хочете видалити цього покупця?",
+                                         "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Buyers.RemoveAt(index);
+            }
         }
 
         private void AddBuyerBtn_Click(object sender, EventArgs e)
