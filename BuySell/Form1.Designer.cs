@@ -133,6 +133,7 @@
             dgvSellers.Columns.AddRange(new DataGridViewColumn[] { productNameDataGridViewTextBoxColumn, quantityDataGridViewTextBoxColumn, priceDataGridViewTextBoxColumn, deliveryTermsDataGridViewTextBoxColumn, paymentTypeDataGridViewTextBoxColumn, contactDataGridViewTextBoxColumn, noteDataGridViewTextBoxColumn });
             dgvSellers.DataSource = sellerBindingSource;
             dgvSellers.Location = new Point(6, 56);
+            dgvSellers.MultiSelect = false;
             dgvSellers.Name = "dgvSellers";
             dgvSellers.ReadOnly = true;
             dgvSellers.RowHeadersVisible = false;
@@ -235,6 +236,7 @@
             dgvBuyers.Columns.AddRange(new DataGridViewColumn[] { productNameDataGridViewTextBoxColumn1, quantityDataGridViewTextBoxColumn1, maxPriceDataGridViewTextBoxColumn, paymentTypeDataGridViewTextBoxColumn1, contactDataGridViewTextBoxColumn1, noteDataGridViewTextBoxColumn1 });
             dgvBuyers.DataSource = buyerBindingSource;
             dgvBuyers.Location = new Point(6, 56);
+            dgvBuyers.MultiSelect = false;
             dgvBuyers.Name = "dgvBuyers";
             dgvBuyers.ReadOnly = true;
             dgvBuyers.RowHeadersVisible = false;
