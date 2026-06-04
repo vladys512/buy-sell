@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BuySell
+namespace BuySell.Models
 {
     // Клас угоди
     public class Deal
@@ -15,7 +15,6 @@ namespace BuySell
         public int Quantity { get; set; }
         public string SellerContact { get; set; }
         public string BuyerContact { get; set; }
-
         public Deal(string productName, decimal price, int quantity, string sellerContact, string buyerContact)
         {
             DealDate = DateTime.Now; 

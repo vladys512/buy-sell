@@ -1,4 +1,6 @@
-﻿namespace BuySell
+﻿using BuySell.Models;
+
+namespace BuySell
 {
     partial class Form1
     {
@@ -106,7 +108,6 @@
             tabPageSellers.TabIndex = 0;
             tabPageSellers.Text = "Продавці";
             tabPageSellers.UseVisualStyleBackColor = true;
-            tabPageSellers.Click += tabPage1_Click;
             // 
             // SearchBuyersBtn
             // 

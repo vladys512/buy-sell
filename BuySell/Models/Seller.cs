@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BuySell
+namespace BuySell.Models
 {
     public class Seller
     {
-        //public int Id { get; set; }
+        public Guid Id { get; private set; } // Унікальний ідентифікатор
         public string ProductName { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
@@ -16,9 +16,11 @@ namespace BuySell
         public string PaymentType { get; set; }
         public string Contact { get; set; }
         public string Note { get; set; }
-
+        public bool IsActive { get; set; } // true - в пулі, false - в архіві (після угоди)
         public Seller(string productName, int quantity, decimal price, string deliveryTerms, string paymentType, string contact, string note)
         {
+            Id = Guid.NewGuid(); // Генеруємо унікальний ID при створенні
+            IsActive = true;
             ProductName = productName;
             Quantity = quantity;
             Price = price;

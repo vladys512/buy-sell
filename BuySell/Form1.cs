@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BuySell.Data;
+using BuySell.Models;
+using BuySell.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,84 +17,68 @@ namespace BuySell
 {
     public partial class Form1 : Form
     {
-        private BindingList<Seller> Sellers = new BindingList<Seller>();
-        private BindingList<Buyer> Buyers = new BindingList<Buyer>();
+        // Уся логіка та списки
+        private ExchangeService _service;
 
-        private Seller currentSearchSeller = null;
-        private Buyer currentSearchBuyer = null;
+        // Змінні для збереження контексту пошуку
+        private Seller _currentSearchSeller = null;
+        private Buyer _currentSearchBuyer = null;
 
-        // Цей список відображається на вкладці пошуку
-        private BindingList<object> SearchResults = new BindingList<object>();
         public Form1()
         {
             InitializeComponent();
-            dgvSellers.DataSource = Sellers;
-            dgvBuyers.DataSource = Buyers;
-            dgvSearchResults.DataSource = SearchResults;
+            this.FormClosing += Form1_FormClosing;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Завантажуємо дані при старті програми
+            _service = DataStorageManager.LoadData();
 
+            // Прив'язуємо дані до таблиць
+            dgvSellers.DataSource = _service.Sellers;
+            dgvBuyers.DataSource = _service.Buyers;
         }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            // Автоматично зберігаємо дані при закритті програми
+            DataStorageManager.SaveData(_service);
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) // Кнопка AddSellerBtn
         {
             using (var addSeller = new AddSellerForm())
             {
                 if (addSeller.ShowDialog() == DialogResult.OK)
                 {
-                    Seller newSeller = addSeller._Seller;
-
-                    Sellers.Add(newSeller);
+                    _service.AddSeller(addSeller._Seller);
                 }
             }
         }
 
         private void DeleteSellerBtn_Click(object sender, EventArgs e)
         {
-            if (dgvSellers.SelectedRows.Count == 0)
+            try
             {
-                MessageBox.Show("Виберіть продавця для видалення");
-                return;
+                if (dgvSellers.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Будь ласка, оберіть продавця для видалення.", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                Seller selectedSeller = (Seller)dgvSellers.SelectedRows[0].DataBoundItem;
+
+                var result = MessageBox.Show($"Ви впевнені, що хочете видалити продавця з товаром '{selectedSeller.ProductName}'?",
+                                             "Підтвердження видалення", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    _service.RemoveSeller(selectedSeller);
+                }
             }
-
-            int index = dgvSellers.SelectedRows[0].Index;
-
-            var result = MessageBox.Show("Ви впевнені що хочете видалити цього продавця?",
-                                         "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+            catch (Exception)
             {
-                Sellers.RemoveAt(index);
-            }
-        }
-
-        private void DeleteBuyerBtn_Click(object sender, EventArgs e)
-        {
-            if (dgvBuyers.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Виберіть покупця для видалення");
-                return;
-            }
-
-            int index = dgvBuyers.SelectedRows[0].Index;
-            var result = MessageBox.Show("Ви впевнені, що хочете видалити цього покупця?",
-                                         "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                Buyers.RemoveAt(index);
+                MessageBox.Show("Виникла непередбачувана ситуація під час видалення. Спробуйте ще раз.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -101,10 +88,33 @@ namespace BuySell
             {
                 if (addBuyer.ShowDialog() == DialogResult.OK)
                 {
-                    Buyer newBuyer = addBuyer._Buyer;
-
-                    Buyers.Add(newBuyer);
+                    _service.AddBuyer(addBuyer._Buyer);
                 }
+            }
+        }
+        private void DeleteBuyerBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvBuyers.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Будь ласка, оберіть покупця для видалення.", "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                Buyer selectedBuyer = (Buyer)dgvBuyers.SelectedRows[0].DataBoundItem;
+
+                var result = MessageBox.Show($"Ви впевнені, що хочете видалити заявку на покупку '{selectedBuyer.ProductName}'?",
+                                             "Підтвердження видалення", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    _service.RemoveBuyer(selectedBuyer);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Виникла помилка під час видалення.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -112,88 +122,62 @@ namespace BuySell
         {
             if (dgvSellers.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Виберіть продавця для пошуку варіантів!");
+                MessageBox.Show("Будь ласка, оберіть продавця зі списку, щоб знайти для нього варіанти.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            // Запам'ятовуємо обраного продавця
-            int index = dgvSellers.SelectedRows[0].Index;
-            currentSearchSeller = Sellers[index];
-            currentSearchBuyer = null; // Очищаємо покупця, бо шукаємо для продавця
+            // Отримуємо об'єкт з таблиці
+            _currentSearchSeller = (Seller)dgvSellers.SelectedRows[0].DataBoundItem;
+            _currentSearchBuyer = null;
 
             UpdateCUSearchUI();
             PerformSearch();
 
-            tabControl1.SelectedTab = tabPageSearch;
+            tabControl1.SelectedTab = tabPageSearch; // Перехід на вкладку пошуку
         }
 
         // Оновлення інформації в лейблі про обраного клієнта для якого ведеться пошук
         private void UpdateCUSearchUI()
         {
-            if (currentSearchSeller != null)
+            if (_currentSearchSeller != null)
             {
                 lblSearchRole.Text = "Шукаємо: ПОКУПЦІВ для обраного продавця";
-                lblClientProduct.Text = $"Товар: {currentSearchSeller.ProductName}";
-                lblClientPrice.Text = $"Ціна продавця: {currentSearchSeller.Price} грн";
-                lblClientQuantity.Text = $"Обсяг: {currentSearchSeller.Quantity} шт.";
+                lblClientProduct.Text = $"Товар: {_currentSearchSeller.ProductName}";
+                lblClientPrice.Text = $"Ціна продавця: {_currentSearchSeller.Price} грн";
+                lblClientQuantity.Text = $"Обсяг: {_currentSearchSeller.Quantity} шт.";
             }
-            else if (currentSearchBuyer != null)
+            else if (_currentSearchBuyer != null)
             {
                 lblSearchRole.Text = "Шукаємо: ПРОДАВЦІВ для обраного покупця";
-                lblClientProduct.Text = $"Товар: {currentSearchBuyer.ProductName}";
-                lblClientPrice.Text = $"Готовий заплатити до: {currentSearchBuyer.MaxPrice} грн";
-                lblClientQuantity.Text = $"Потрібний обсяг: {currentSearchBuyer.Quantity} шт.";
+                lblClientProduct.Text = $"Товар: {_currentSearchBuyer.ProductName}";
+                lblClientPrice.Text = $"Готовий заплатити до: {_currentSearchBuyer.MaxPrice} грн";
+                lblClientQuantity.Text = $"Потрібний обсяг: {_currentSearchBuyer.Quantity} шт.";
             }
         }
+        //Функція пошуку співпадінь
         private void PerformSearch()
         {
-            // Шукаємо ПОКУПЦІВ для обраного ПРОДАВЦЯ
-            if (currentSearchSeller != null)
+            try
             {
-                // Фільтруємо: однаковий товар і покупець готовий заплатити ціну продавця (або більше)
-                var matchingBuyers = Buyers.Where(b =>
-                    b.ProductName.Equals(currentSearchSeller.ProductName, StringComparison.OrdinalIgnoreCase) &&
-                    b.MaxPrice >= currentSearchSeller.Price);
+                bool sortByQuantity = rbSortByQuantity != null && rbSortByQuantity.Checked;
 
-                // Сортування
-                if (rbSortByQuantity != null && rbSortByQuantity.Checked)
+                if (_currentSearchSeller != null)
                 {
-                    // За обсягом (від найбільшого до найменшого)
-                    matchingBuyers = matchingBuyers.OrderByDescending(b => b.Quantity);
+                    BindingList<Buyer> results = _service.FindMatchingBuyers(_currentSearchSeller, sortByQuantity);
+                    dgvSearchResults.DataSource = results;
                 }
-                else
+                else if (_currentSearchBuyer != null)
                 {
-                    // За замовчуванням: за ціною (від більшї до меншої)
-                    matchingBuyers = matchingBuyers.OrderByDescending(b => b.MaxPrice);
+                    BindingList<Seller> results = _service.FindMatchingSellers(_currentSearchBuyer, sortByQuantity);
+                    dgvSearchResults.DataSource = results;
                 }
-
-                // Виводимо в таблицю
-                dgvSearchResults.DataSource = new BindingList<Buyer>(matchingBuyers.ToList());
             }
-            // Шукаємо ПРОДАВЦІВ для обраного ПОКУПЦЯ
-            else if (currentSearchBuyer != null)
+            catch (Exception)
             {
-                // Фільтруємо: однаковий товар і ціна продавця менша або дорівнює максимальній ціні покупця
-                var matchingSellers = Sellers.Where(s =>
-                    s.ProductName.Equals(currentSearchBuyer.ProductName, StringComparison.OrdinalIgnoreCase) &&
-                    s.Price <= currentSearchBuyer.MaxPrice);
-
-                // Сортування
-                if (rbSortByQuantity != null && rbSortByQuantity.Checked)
-                {
-                    // За обсягом
-                    matchingSellers = matchingSellers.OrderByDescending(s => s.Quantity);
-                }
-                else
-                {
-                    // За замовчуванням: за ціною (від найдешевшого до найдорожчого)
-                    matchingSellers = matchingSellers.OrderBy(s => s.Price);
-                }
-
-                // Виводимо в таблицю
-                dgvSearchResults.DataSource = new BindingList<Seller>(matchingSellers.ToList());
+                MessageBox.Show("Сталася помилка під час пошуку варіантів. Перевірте введені дані.", "Помилка пошуку", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void rbSortByPrice_CheckedChanged(object sender, EventArgs e)
         {
             if (rbSortByPrice.Checked) PerformSearch();
@@ -203,6 +187,5 @@ namespace BuySell
         {
             if (rbSortByQuantity.Checked) PerformSearch();
         }
-
     }
 }
