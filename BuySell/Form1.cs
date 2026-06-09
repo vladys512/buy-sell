@@ -81,6 +81,22 @@ namespace BuySell
                 MessageBox.Show("Виникла непередбачувана ситуація під час видалення. Спробуйте ще раз.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+        private void SearchSellersBtn_Click(object sender, EventArgs e)
+        {
+            if (dgvBuyers.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Будь ласка, оберіть покупця зі списку, щоб знайти для нього варіанти.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            _currentSearchBuyer = (Buyer)dgvBuyers.SelectedRows[0].DataBoundItem;
+            _currentSearchSeller = null;
+
+            UpdateCUSearchUI();
+            PerformSearch();
+
+            tabControl1.SelectedTab = tabPageSearch; // Перехід на вкладку пошуку
+        }
 
         private void AddBuyerBtn_Click(object sender, EventArgs e)
         {

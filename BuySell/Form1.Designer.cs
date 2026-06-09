@@ -242,6 +242,7 @@ namespace BuySell
             SearchSellersBtn.TabIndex = 5;
             SearchSellersBtn.Text = "Пошук покупців";
             SearchSellersBtn.UseVisualStyleBackColor = true;
+            SearchSellersBtn.Click += SearchSellersBtn_Click;
             // 
             // dgvBuyers
             // 
@@ -264,7 +265,7 @@ namespace BuySell
             // productNameDataGridViewTextBoxColumn1
             // 
             productNameDataGridViewTextBoxColumn1.DataPropertyName = "ProductName";
-            productNameDataGridViewTextBoxColumn1.HeaderText = "ProductName";
+            productNameDataGridViewTextBoxColumn1.HeaderText = "Товар";
             productNameDataGridViewTextBoxColumn1.MinimumWidth = 6;
             productNameDataGridViewTextBoxColumn1.Name = "productNameDataGridViewTextBoxColumn1";
             productNameDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -272,7 +273,7 @@ namespace BuySell
             // quantityDataGridViewTextBoxColumn1
             // 
             quantityDataGridViewTextBoxColumn1.DataPropertyName = "Quantity";
-            quantityDataGridViewTextBoxColumn1.HeaderText = "Quantity";
+            quantityDataGridViewTextBoxColumn1.HeaderText = "Обсяг товару";
             quantityDataGridViewTextBoxColumn1.MinimumWidth = 6;
             quantityDataGridViewTextBoxColumn1.Name = "quantityDataGridViewTextBoxColumn1";
             quantityDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -280,7 +281,7 @@ namespace BuySell
             // maxPriceDataGridViewTextBoxColumn
             // 
             maxPriceDataGridViewTextBoxColumn.DataPropertyName = "MaxPrice";
-            maxPriceDataGridViewTextBoxColumn.HeaderText = "MaxPrice";
+            maxPriceDataGridViewTextBoxColumn.HeaderText = "Максимальна ціна";
             maxPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
             maxPriceDataGridViewTextBoxColumn.Name = "maxPriceDataGridViewTextBoxColumn";
             maxPriceDataGridViewTextBoxColumn.ReadOnly = true;
@@ -288,7 +289,7 @@ namespace BuySell
             // paymentTypeDataGridViewTextBoxColumn1
             // 
             paymentTypeDataGridViewTextBoxColumn1.DataPropertyName = "PaymentType";
-            paymentTypeDataGridViewTextBoxColumn1.HeaderText = "PaymentType";
+            paymentTypeDataGridViewTextBoxColumn1.HeaderText = "Форма оплати";
             paymentTypeDataGridViewTextBoxColumn1.MinimumWidth = 6;
             paymentTypeDataGridViewTextBoxColumn1.Name = "paymentTypeDataGridViewTextBoxColumn1";
             paymentTypeDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -296,7 +297,7 @@ namespace BuySell
             // contactDataGridViewTextBoxColumn1
             // 
             contactDataGridViewTextBoxColumn1.DataPropertyName = "Contact";
-            contactDataGridViewTextBoxColumn1.HeaderText = "Contact";
+            contactDataGridViewTextBoxColumn1.HeaderText = "Контакти";
             contactDataGridViewTextBoxColumn1.MinimumWidth = 6;
             contactDataGridViewTextBoxColumn1.Name = "contactDataGridViewTextBoxColumn1";
             contactDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -304,7 +305,7 @@ namespace BuySell
             // noteDataGridViewTextBoxColumn1
             // 
             noteDataGridViewTextBoxColumn1.DataPropertyName = "Note";
-            noteDataGridViewTextBoxColumn1.HeaderText = "Note";
+            noteDataGridViewTextBoxColumn1.HeaderText = "Примітки";
             noteDataGridViewTextBoxColumn1.MinimumWidth = 6;
             noteDataGridViewTextBoxColumn1.Name = "noteDataGridViewTextBoxColumn1";
             noteDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -510,12 +511,6 @@ namespace BuySell
         private Button SearchBuyersBtn;
         private DataGridView dgvBuyers;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn maxPriceDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn paymentTypeDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn1;
         private BindingSource buyerBindingSource;
         private Button SearchSellersBtn;
         private DataGridView dgvSearchResults;
@@ -529,5 +524,11 @@ namespace BuySell
         private Label lblClientProduct;
         private ContextMenuStrip contextMenuStrip1;
         private Label label1;
+        private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn maxPriceDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn paymentTypeDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn1;
     }
 }
