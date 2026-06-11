@@ -27,27 +27,44 @@ namespace BuySell
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             // Валідація обов'язкових текстових полів
-            if (string.IsNullOrWhiteSpace(tbProductName.Text) ||
-                string.IsNullOrWhiteSpace(tbContact.Text))
+            if (string.IsNullOrWhiteSpace(tbBuyerName.Text))
             {
-                MessageBox.Show("Заповніть обов'язкові поля: Товар та Контакт!",
-                                "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Будь ласка, вкажіть ім'я або найменування організації покупця. Це поле є обов'язковим для заповнення списку.",
+                                "Заповніть форму", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbBuyerName.Focus(); 
                 return;
             }
 
-            // Валідація кількості
+            // 2. Перевірка найменування товару
+            if (string.IsNullOrWhiteSpace(tbProductName.Text))
+            {
+                MessageBox.Show("Поле 'Найменування товару' не може бути порожнім. Будь ласка, введіть назву товару, який Ви шукаєте.",
+                                "Заповніть форму", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbProductName.Focus();
+                return;
+            }
+
             if (!int.TryParse(tbQuantity.Text, out int quantity) || quantity <= 0)
             {
-                MessageBox.Show("Кількість повинна бути цілим числом більше 0!",
-                                "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Необхідний обсяг покупки вказано некоректно. Будь ласка, введіть ціле додатне число (наприклад: 5, 120).",
+                                "Некоректний формат даних", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbQuantity.Focus();
                 return;
             }
 
-            // Валідація ціни
-            if (!decimal.TryParse(tbMaxPrice.Text, out decimal price) || price <= 0)
+            if (!decimal.TryParse(tbMaxPrice.Text, out decimal maxPrice) || maxPrice <= 0)
             {
-                MessageBox.Show("Ціна повинна бути числом більше 0!",
-                                "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Прийнятну ціну товару вказано некоректно. Будь ласка, введіть числове значення більше нуля (наприклад: 250 або 99.90).",
+                                "Некоректний формат даних", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbMaxPrice.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(tbContact.Text))
+            {
+                MessageBox.Show("Будь ласка, заповніть контактні дані (номер телефону або адресу електронної пошти), щоб продавці могли зв'язатися з Вами для укладання угоди.",
+                                "Заповніть форму", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbContact.Focus();
                 return;
             }
 
@@ -56,7 +73,7 @@ namespace BuySell
                 tbBuyerName.Text.Trim(),
                 tbProductName.Text.Trim(),
                 quantity,
-                price,
+                maxPrice,
                 tbPaymentType.Text.Trim(),
                 tbContact.Text.Trim(),
                 tbNote.Text.Trim()

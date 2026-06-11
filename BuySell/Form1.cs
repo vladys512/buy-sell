@@ -27,6 +27,10 @@ namespace BuySell
         public Form1()
         {
             InitializeComponent();
+
+            this.KeyPreview = true;
+            this.KeyDown += Form1_KeyDown;
+
             this.FormClosing += Form1_FormClosing;
         }
 
@@ -90,6 +94,16 @@ namespace BuySell
                 MessageBox.Show("Виникла непередбачувана ситуація під час видалення. Спробуйте ще раз.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+        // Обробник натискання клавіш для таблиці продавців
+        private void dgvSellers_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                DeleteSellerBtn_Click(sender, e);
+
+                e.Handled = true;
+            }
+        }
         private void SearchSellersBtn_Click(object sender, EventArgs e)
         {
             if (dgvBuyers.SelectedRows.Count == 0)
@@ -104,7 +118,7 @@ namespace BuySell
             UpdateCUSearchUI();
             PerformSearch();
 
-            tabControl1.SelectedTab = tabPageSearch; 
+            tabControl1.SelectedTab = tabPageSearch;
         }
 
         private void AddBuyerBtn_Click(object sender, EventArgs e)
@@ -142,6 +156,15 @@ namespace BuySell
                 MessageBox.Show("Виникла помилка під час видалення.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+        // Обробник натискання клавіш для таблиці покупців
+        private void dgvBuyers_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                DeleteBuyerBtn_Click(sender, e);
+                e.Handled = true;
+            }
+        }
 
         private void SearchBuyersBtn_Click(object sender, EventArgs e)
         {
@@ -157,7 +180,7 @@ namespace BuySell
             UpdateCUSearchUI();
             PerformSearch();
 
-            tabControl1.SelectedTab = tabPageSearch; 
+            tabControl1.SelectedTab = tabPageSearch;
         }
 
         // Оновлення інформації в лейблі про обраного клієнта для якого ведеться пошук
@@ -360,6 +383,102 @@ namespace BuySell
         private void cmbSortOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
             PerformSearch();
+        }
+
+        private void PrintSellerAnnouncementBtn_Click(object sender, EventArgs e)
+        {
+            if (dgvSellers.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Будь ласка, оберіть запис для формування оголошення.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Seller selectedSeller = (Seller)dgvSellers.SelectedRows[0].DataBoundItem;
+
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Text files (*.txt)|*.txt";
+                sfd.FileName = $"Оголошення_Продаж_{selectedSeller.ProductName}.txt";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        string announcement = AnnouncementService.GenerateSellerAnnouncement(selectedSeller);
+                        System.IO.File.WriteAllText(sfd.FileName, announcement);
+                        MessageBox.Show("Оголошення успішно збережено та готове до друку!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // За бажанням: автоматично відкрити файл у Блокноті
+                        System.Diagnostics.Process.Start("notepad.exe", sfd.FileName);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Помилка при створенні файлу.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+        private void PrintBuyerAnnouncementBtn_Click(object sender, EventArgs e)
+        {
+            if (dgvBuyers.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Будь ласка, оберіть запис для формування оголошення.", "Увага", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Buyer selectedBuyer = (Buyer)dgvBuyers.SelectedRows[0].DataBoundItem;
+
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Text files (*.txt)|*.txt";
+                sfd.FileName = $"Оголошення_Купівля_{selectedBuyer.ProductName}.txt";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        string announcement = AnnouncementService.GenerateBuyerAnnouncement(selectedBuyer);
+
+                        System.IO.File.WriteAllText(sfd.FileName, announcement);
+                        MessageBox.Show("Оголошення успішно збережено та готове до друку!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // За бажанням: автоматично відкрити файл у Блокноті
+                        System.Diagnostics.Process.Start("notepad.exe", sfd.FileName);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Помилка при створенні файлу.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Вимога методички: F1 – допомога
+            if (e.KeyCode == Keys.F1)
+            {
+                ShowHelpBulletin();
+                e.Handled = true;
+            }
+        }
+        /// <summary>
+        /// Вікно довідки
+        /// </summary>
+        private void ShowHelpBulletin()
+        {
+            string helpText = "Ласкаво просимо до інформаційної системи «Біржа товарів»!\n\n" +
+                              "Програма призначена для реєстрації заявок покупців, пропозицій продавців " +
+                              "та автоматичного пошуку взаємовигідних варіантів для укладання угод.\n\n" +
+                              "Правила використання клавіатури в системі:\n" +
+                              "• [F1] – Виклик цього вікна довідки;\n" +
+                              "• [Delete] – Вилучення обраного клієнта з активної таблиці;\n" +
+                              "• [Enter] – Підтвердження збереження даних (у вікнах вводу);\n" +
+                              "• [Esc] – Скасування поточної операції або закриття діалогового вікна;\n" +
+                              "• [Tab] – Перехід до наступного текстового поля;\n" +
+                              "• [Shift + Tab] – Повернення до попереднього текстового поля.\n\n" +
+                              "Всі дії, які призводять до видалення інформації, потребують Вашого підтвердження.";
+
+            MessageBox.Show(helpText, "Довідка користувача системи", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

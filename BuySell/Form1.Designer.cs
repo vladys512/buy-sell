@@ -33,6 +33,7 @@ namespace BuySell
             components = new System.ComponentModel.Container();
             tabControl1 = new TabControl();
             tabPageSellers = new TabPage();
+            PrintSellerAnnouncementBtn = new Button();
             SearchBuyersBtn = new Button();
             DeleteSellerBtn = new Button();
             AddSeller = new Button();
@@ -47,6 +48,7 @@ namespace BuySell
             noteDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             sellerBindingSource = new BindingSource(components);
             tabPageBuyers = new TabPage();
+            PrintBuyerAnnouncementBtn = new Button();
             SearchSellersBtn = new Button();
             dgvBuyers = new DataGridView();
             productNameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
@@ -71,8 +73,6 @@ namespace BuySell
             dgvSearchResults = new DataGridView();
             tabPage4 = new TabPage();
             dgvArchive = new DataGridView();
-            dealBindingSource = new BindingSource(components);
-            contextMenuStrip1 = new ContextMenuStrip(components);
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dealDateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             sellerNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -84,6 +84,8 @@ namespace BuySell
             BuyerContact = new DataGridViewTextBoxColumn();
             sellerFeedbackDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             buyerFeedbackDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dealBindingSource = new BindingSource(components);
+            contextMenuStrip1 = new ContextMenuStrip(components);
             tabControl1.SuspendLayout();
             tabPageSellers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSellers).BeginInit();
@@ -114,6 +116,7 @@ namespace BuySell
             // 
             // tabPageSellers
             // 
+            tabPageSellers.Controls.Add(PrintSellerAnnouncementBtn);
             tabPageSellers.Controls.Add(SearchBuyersBtn);
             tabPageSellers.Controls.Add(DeleteSellerBtn);
             tabPageSellers.Controls.Add(AddSeller);
@@ -125,6 +128,16 @@ namespace BuySell
             tabPageSellers.TabIndex = 0;
             tabPageSellers.Text = "Продавці";
             tabPageSellers.UseVisualStyleBackColor = true;
+            // 
+            // PrintSellerAnnouncementBtn
+            // 
+            PrintSellerAnnouncementBtn.Location = new Point(8, 6);
+            PrintSellerAnnouncementBtn.Name = "PrintSellerAnnouncementBtn";
+            PrintSellerAnnouncementBtn.Size = new Size(208, 44);
+            PrintSellerAnnouncementBtn.TabIndex = 4;
+            PrintSellerAnnouncementBtn.Text = "Сформувати оголошення";
+            PrintSellerAnnouncementBtn.UseVisualStyleBackColor = true;
+            PrintSellerAnnouncementBtn.Click += PrintSellerAnnouncementBtn_Click;
             // 
             // SearchBuyersBtn
             // 
@@ -176,6 +189,7 @@ namespace BuySell
             dgvSellers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvSellers.Size = new Size(878, 298);
             dgvSellers.TabIndex = 0;
+            dgvSellers.KeyDown += dgvSellers_KeyDown;
             // 
             // productNameDataGridViewTextBoxColumn
             // 
@@ -248,6 +262,7 @@ namespace BuySell
             // 
             // tabPageBuyers
             // 
+            tabPageBuyers.Controls.Add(PrintBuyerAnnouncementBtn);
             tabPageBuyers.Controls.Add(SearchSellersBtn);
             tabPageBuyers.Controls.Add(dgvBuyers);
             tabPageBuyers.Controls.Add(DeleteBuyerBtn);
@@ -259,6 +274,16 @@ namespace BuySell
             tabPageBuyers.TabIndex = 1;
             tabPageBuyers.Text = "Покупці";
             tabPageBuyers.UseVisualStyleBackColor = true;
+            // 
+            // PrintBuyerAnnouncementBtn
+            // 
+            PrintBuyerAnnouncementBtn.Location = new Point(8, 6);
+            PrintBuyerAnnouncementBtn.Name = "PrintBuyerAnnouncementBtn";
+            PrintBuyerAnnouncementBtn.Size = new Size(208, 44);
+            PrintBuyerAnnouncementBtn.TabIndex = 6;
+            PrintBuyerAnnouncementBtn.Text = "Сформувати оголошення";
+            PrintBuyerAnnouncementBtn.UseVisualStyleBackColor = true;
+            PrintBuyerAnnouncementBtn.Click += PrintBuyerAnnouncementBtn_Click;
             // 
             // SearchSellersBtn
             // 
@@ -288,6 +313,7 @@ namespace BuySell
             dgvBuyers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBuyers.Size = new Size(878, 298);
             dgvBuyers.TabIndex = 4;
+            dgvBuyers.KeyDown += dgvBuyers_KeyDown;
             // 
             // productNameDataGridViewTextBoxColumn1
             // 
@@ -388,6 +414,7 @@ namespace BuySell
             // cmbSortOptions
             // 
             cmbSortOptions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            cmbSortOptions.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbSortOptions.FormattingEnabled = true;
             cmbSortOptions.Items.AddRange(new object[] { "без сортування", "за ціною", "за обсягом" });
             cmbSortOptions.Location = new Point(735, 132);
@@ -505,16 +532,6 @@ namespace BuySell
             dgvArchive.Size = new Size(894, 417);
             dgvArchive.TabIndex = 0;
             // 
-            // dealBindingSource
-            // 
-            dealBindingSource.DataSource = typeof(Deal);
-            // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
-            // 
             // dataGridViewTextBoxColumn2
             // 
             dataGridViewTextBoxColumn2.DataPropertyName = "Id";
@@ -603,6 +620,16 @@ namespace BuySell
             buyerFeedbackDataGridViewTextBoxColumn.Name = "buyerFeedbackDataGridViewTextBoxColumn";
             buyerFeedbackDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // dealBindingSource
+            // 
+            dealBindingSource.DataSource = typeof(Deal);
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -686,5 +713,7 @@ namespace BuySell
         private DataGridViewTextBoxColumn BuyerContact;
         private DataGridViewTextBoxColumn sellerFeedbackDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn buyerFeedbackDataGridViewTextBoxColumn;
+        private Button PrintSellerAnnouncementBtn;
+        private Button PrintBuyerAnnouncementBtn;
     }
 }

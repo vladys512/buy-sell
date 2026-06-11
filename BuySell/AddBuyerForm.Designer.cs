@@ -58,8 +58,9 @@
             // tbProductName
             // 
             tbProductName.Location = new Point(174, 21);
+            tbProductName.MaxLength = 200;
             tbProductName.Name = "tbProductName";
-            tbProductName.Size = new Size(228, 27);
+            tbProductName.Size = new Size(346, 27);
             tbProductName.TabIndex = 4;
             // 
             // label2
@@ -110,36 +111,41 @@
             // tbQuantity
             // 
             tbQuantity.Location = new Point(174, 104);
+            tbQuantity.MaxLength = 200;
             tbQuantity.Name = "tbQuantity";
-            tbQuantity.Size = new Size(228, 27);
+            tbQuantity.Size = new Size(346, 27);
             tbQuantity.TabIndex = 10;
             // 
             // tbMaxPrice
             // 
             tbMaxPrice.Location = new Point(174, 146);
+            tbMaxPrice.MaxLength = 200;
             tbMaxPrice.Name = "tbMaxPrice";
-            tbMaxPrice.Size = new Size(228, 27);
+            tbMaxPrice.Size = new Size(346, 27);
             tbMaxPrice.TabIndex = 11;
             // 
             // tbPaymentType
             // 
             tbPaymentType.Location = new Point(174, 189);
+            tbPaymentType.MaxLength = 200;
             tbPaymentType.Name = "tbPaymentType";
-            tbPaymentType.Size = new Size(228, 27);
+            tbPaymentType.Size = new Size(346, 27);
             tbPaymentType.TabIndex = 12;
             // 
             // tbContact
             // 
             tbContact.Location = new Point(174, 228);
+            tbContact.MaxLength = 200;
             tbContact.Name = "tbContact";
-            tbContact.Size = new Size(228, 27);
+            tbContact.Size = new Size(346, 27);
             tbContact.TabIndex = 13;
             // 
             // tbNote
             // 
             tbNote.Location = new Point(174, 270);
+            tbNote.MaxLength = 200;
             tbNote.Name = "tbNote";
-            tbNote.Size = new Size(228, 27);
+            tbNote.Size = new Size(346, 27);
             tbNote.TabIndex = 14;
             // 
             // SaveBtn
@@ -164,8 +170,9 @@
             // tbBuyerName
             // 
             tbBuyerName.Location = new Point(174, 62);
+            tbBuyerName.MaxLength = 200;
             tbBuyerName.Name = "tbBuyerName";
-            tbBuyerName.Size = new Size(228, 27);
+            tbBuyerName.Size = new Size(346, 27);
             tbBuyerName.TabIndex = 17;
             // 
             // label7
@@ -179,8 +186,10 @@
             // 
             // AddBuyerForm
             // 
+            AcceptButton = SaveBtn;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = CancelBtn;
             ClientSize = new Size(532, 453);
             Controls.Add(label7);
             Controls.Add(tbBuyerName);
