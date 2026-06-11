@@ -292,7 +292,7 @@ namespace BuySell
             SearchSellersBtn.Name = "SearchSellersBtn";
             SearchSellersBtn.Size = new Size(878, 54);
             SearchSellersBtn.TabIndex = 5;
-            SearchSellersBtn.Text = "Пошук покупців";
+            SearchSellersBtn.Text = "Пошук продавців";
             SearchSellersBtn.UseVisualStyleBackColor = true;
             SearchSellersBtn.Click += SearchSellersBtn_Click;
             // 

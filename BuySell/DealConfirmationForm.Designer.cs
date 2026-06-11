@@ -36,7 +36,7 @@
             // lblInfo
             // 
             lblInfo.AutoSize = true;
-            lblInfo.Location = new Point(12, 9);
+            lblInfo.Location = new Point(89, 9);
             lblInfo.Name = "lblInfo";
             lblInfo.Size = new Size(50, 20);
             lblInfo.TabIndex = 0;
@@ -44,21 +44,21 @@
             // 
             // btnConfirm
             // 
-            btnConfirm.Location = new Point(59, 386);
+            btnConfirm.Location = new Point(89, 386);
             btnConfirm.Name = "btnConfirm";
             btnConfirm.Size = new Size(182, 52);
             btnConfirm.TabIndex = 1;
-            btnConfirm.Text = "button1";
+            btnConfirm.Text = "Підтвердити";
             btnConfirm.UseVisualStyleBackColor = true;
             btnConfirm.Click += btnConfirm_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(306, 386);
+            btnCancel.Location = new Point(277, 386);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(182, 52);
             btnCancel.TabIndex = 2;
-            btnCancel.Text = "button2";
+            btnCancel.Text = "Скасувати";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
