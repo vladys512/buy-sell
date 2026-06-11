@@ -53,6 +53,7 @@ namespace BuySell
 
             // Усі перевірки пройдені — створюємо об'єкт
             _Buyer = new Buyer(
+                tbBuyerName.Text.Trim(),
                 tbProductName.Text.Trim(),
                 quantity,
                 price,

@@ -42,6 +42,8 @@
             tbNote = new TextBox();
             SaveBtn = new Button();
             CancelBtn = new Button();
+            tbBuyerName = new TextBox();
+            label7 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -55,7 +57,7 @@
             // 
             // tbProductName
             // 
-            tbProductName.Location = new Point(86, 21);
+            tbProductName.Location = new Point(174, 21);
             tbProductName.Name = "tbProductName";
             tbProductName.Size = new Size(228, 27);
             tbProductName.TabIndex = 4;
@@ -63,7 +65,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(26, 70);
+            label2.Location = new Point(26, 107);
             label2.Name = "label2";
             label2.Size = new Size(104, 20);
             label2.TabIndex = 5;
@@ -72,7 +74,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(26, 114);
+            label3.Location = new Point(26, 149);
             label3.Name = "label3";
             label3.Size = new Size(142, 20);
             label3.TabIndex = 6;
@@ -81,7 +83,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(26, 154);
+            label4.Location = new Point(26, 192);
             label4.Name = "label4";
             label4.Size = new Size(113, 20);
             label4.TabIndex = 7;
@@ -90,7 +92,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(26, 195);
+            label5.Location = new Point(26, 231);
             label5.Name = "label5";
             label5.Size = new Size(75, 20);
             label5.TabIndex = 8;
@@ -99,7 +101,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(26, 237);
+            label6.Location = new Point(27, 273);
             label6.Name = "label6";
             label6.Size = new Size(78, 20);
             label6.TabIndex = 9;
@@ -107,35 +109,35 @@
             // 
             // tbQuantity
             // 
-            tbQuantity.Location = new Point(136, 67);
+            tbQuantity.Location = new Point(174, 104);
             tbQuantity.Name = "tbQuantity";
             tbQuantity.Size = new Size(228, 27);
             tbQuantity.TabIndex = 10;
             // 
             // tbMaxPrice
             // 
-            tbMaxPrice.Location = new Point(174, 111);
+            tbMaxPrice.Location = new Point(174, 146);
             tbMaxPrice.Name = "tbMaxPrice";
             tbMaxPrice.Size = new Size(228, 27);
             tbMaxPrice.TabIndex = 11;
             // 
             // tbPaymentType
             // 
-            tbPaymentType.Location = new Point(145, 151);
+            tbPaymentType.Location = new Point(174, 189);
             tbPaymentType.Name = "tbPaymentType";
             tbPaymentType.Size = new Size(228, 27);
             tbPaymentType.TabIndex = 12;
             // 
             // tbContact
             // 
-            tbContact.Location = new Point(107, 192);
+            tbContact.Location = new Point(174, 228);
             tbContact.Name = "tbContact";
             tbContact.Size = new Size(228, 27);
             tbContact.TabIndex = 13;
             // 
             // tbNote
             // 
-            tbNote.Location = new Point(110, 234);
+            tbNote.Location = new Point(174, 270);
             tbNote.Name = "tbNote";
             tbNote.Size = new Size(228, 27);
             tbNote.TabIndex = 14;
@@ -159,11 +161,29 @@
             CancelBtn.Text = "Скасувати";
             CancelBtn.UseVisualStyleBackColor = true;
             // 
+            // tbBuyerName
+            // 
+            tbBuyerName.Location = new Point(174, 62);
+            tbBuyerName.Name = "tbBuyerName";
+            tbBuyerName.Size = new Size(228, 27);
+            tbBuyerName.TabIndex = 17;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(27, 65);
+            label7.Name = "label7";
+            label7.Size = new Size(35, 20);
+            label7.TabIndex = 18;
+            label7.Text = "Ім'я";
+            // 
             // AddBuyerForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(532, 453);
+            Controls.Add(label7);
+            Controls.Add(tbBuyerName);
             Controls.Add(CancelBtn);
             Controls.Add(SaveBtn);
             Controls.Add(tbNote);
@@ -179,7 +199,7 @@
             Controls.Add(tbProductName);
             Controls.Add(label1);
             Name = "AddBuyerForm";
-            Text = "Form2";
+            Text = "Додавання покупця";
             Load += AddBuyerForm_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -201,5 +221,7 @@
         private TextBox tbNote;
         private Button SaveBtn;
         private Button CancelBtn;
+        private TextBox tbBuyerName;
+        private Label label7;
     }
 }

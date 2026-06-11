@@ -9,20 +9,21 @@ namespace BuySell.Models
     // Клас угоди
     public class Deal
     {
+        public Guid Id { get; set; }
+        public Guid SellerId { get; set; }
+        public Guid BuyerId { get; set; }
         public DateTime DealDate { get; set; }
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
+        public string SellerName { get; set; } 
+        public string BuyerName { get; set; }  
         public string SellerContact { get; set; }
         public string BuyerContact { get; set; }
-        public Deal(string productName, decimal price, int quantity, string sellerContact, string buyerContact)
-        {
-            DealDate = DateTime.Now; 
-            ProductName = productName;
-            Price = price;
-            Quantity = quantity;
-            SellerContact = sellerContact;
-            BuyerContact = buyerContact;
-        }
+        public bool IsSellerSatisfied { get; set; }
+        public bool IsBuyerSatisfied { get; set; }
+
+        public string SellerFeedback => IsSellerSatisfied ? "Задоволений" : "Незадоволений";
+        public string BuyerFeedback => IsBuyerSatisfied ? "Задоволений" : "Незадоволений";
     }
 }

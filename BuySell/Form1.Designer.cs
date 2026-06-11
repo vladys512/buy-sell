@@ -38,6 +38,7 @@ namespace BuySell
             AddSeller = new Button();
             dgvSellers = new DataGridView();
             productNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            NameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             quantityDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             priceDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             deliveryTermsDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -49,6 +50,7 @@ namespace BuySell
             SearchSellersBtn = new Button();
             dgvBuyers = new DataGridView();
             productNameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             quantityDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             maxPriceDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             paymentTypeDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
@@ -58,10 +60,9 @@ namespace BuySell
             DeleteBuyerBtn = new Button();
             AddBuyerBtn = new Button();
             tabPageSearch = new TabPage();
+            cmbSortOptions = new ComboBox();
             label1 = new Label();
-            button1 = new Button();
-            rbSortByQuantity = new RadioButton();
-            rbSortByPrice = new RadioButton();
+            MakeDealBtn = new Button();
             groupBox1 = new GroupBox();
             lblClientQuantity = new Label();
             lblClientPrice = new Label();
@@ -69,7 +70,20 @@ namespace BuySell
             lblSearchRole = new Label();
             dgvSearchResults = new DataGridView();
             tabPage4 = new TabPage();
+            dgvArchive = new DataGridView();
+            dealBindingSource = new BindingSource(components);
             contextMenuStrip1 = new ContextMenuStrip(components);
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dealDateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            sellerNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            buyerNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            productNameDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            priceDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            quantityDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            SellerContact = new DataGridViewTextBoxColumn();
+            BuyerContact = new DataGridViewTextBoxColumn();
+            sellerFeedbackDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            buyerFeedbackDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             tabControl1.SuspendLayout();
             tabPageSellers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSellers).BeginInit();
@@ -80,6 +94,9 @@ namespace BuySell
             tabPageSearch.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSearchResults).BeginInit();
+            tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvArchive).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dealBindingSource).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -122,7 +139,8 @@ namespace BuySell
             // 
             // DeleteSellerBtn
             // 
-            DeleteSellerBtn.Location = new Point(148, 6);
+            DeleteSellerBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            DeleteSellerBtn.Location = new Point(748, 6);
             DeleteSellerBtn.Name = "DeleteSellerBtn";
             DeleteSellerBtn.Size = new Size(136, 44);
             DeleteSellerBtn.TabIndex = 2;
@@ -132,7 +150,8 @@ namespace BuySell
             // 
             // AddSeller
             // 
-            AddSeller.Location = new Point(6, 6);
+            AddSeller.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            AddSeller.Location = new Point(606, 6);
             AddSeller.Name = "AddSeller";
             AddSeller.Size = new Size(136, 44);
             AddSeller.TabIndex = 1;
@@ -146,7 +165,7 @@ namespace BuySell
             dgvSellers.AutoGenerateColumns = false;
             dgvSellers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSellers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSellers.Columns.AddRange(new DataGridViewColumn[] { productNameDataGridViewTextBoxColumn, quantityDataGridViewTextBoxColumn, priceDataGridViewTextBoxColumn, deliveryTermsDataGridViewTextBoxColumn, paymentTypeDataGridViewTextBoxColumn, contactDataGridViewTextBoxColumn, noteDataGridViewTextBoxColumn });
+            dgvSellers.Columns.AddRange(new DataGridViewColumn[] { productNameDataGridViewTextBoxColumn, NameDataGridViewTextBoxColumn, quantityDataGridViewTextBoxColumn, priceDataGridViewTextBoxColumn, deliveryTermsDataGridViewTextBoxColumn, paymentTypeDataGridViewTextBoxColumn, contactDataGridViewTextBoxColumn, noteDataGridViewTextBoxColumn });
             dgvSellers.DataSource = sellerBindingSource;
             dgvSellers.Location = new Point(6, 56);
             dgvSellers.MultiSelect = false;
@@ -166,6 +185,14 @@ namespace BuySell
             productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
             productNameDataGridViewTextBoxColumn.ReadOnly = true;
             productNameDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
+            // 
+            // NameDataGridViewTextBoxColumn
+            // 
+            NameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            NameDataGridViewTextBoxColumn.HeaderText = "Ім'я";
+            NameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn";
+            NameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // quantityDataGridViewTextBoxColumn
             // 
@@ -250,7 +277,7 @@ namespace BuySell
             dgvBuyers.AutoGenerateColumns = false;
             dgvBuyers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBuyers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBuyers.Columns.AddRange(new DataGridViewColumn[] { productNameDataGridViewTextBoxColumn1, quantityDataGridViewTextBoxColumn1, maxPriceDataGridViewTextBoxColumn, paymentTypeDataGridViewTextBoxColumn1, contactDataGridViewTextBoxColumn1, noteDataGridViewTextBoxColumn1 });
+            dgvBuyers.Columns.AddRange(new DataGridViewColumn[] { productNameDataGridViewTextBoxColumn1, dataGridViewTextBoxColumn1, quantityDataGridViewTextBoxColumn1, maxPriceDataGridViewTextBoxColumn, paymentTypeDataGridViewTextBoxColumn1, contactDataGridViewTextBoxColumn1, noteDataGridViewTextBoxColumn1 });
             dgvBuyers.DataSource = buyerBindingSource;
             dgvBuyers.Location = new Point(6, 56);
             dgvBuyers.MultiSelect = false;
@@ -269,6 +296,14 @@ namespace BuySell
             productNameDataGridViewTextBoxColumn1.MinimumWidth = 6;
             productNameDataGridViewTextBoxColumn1.Name = "productNameDataGridViewTextBoxColumn1";
             productNameDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            dataGridViewTextBoxColumn1.HeaderText = "Ім'я";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // quantityDataGridViewTextBoxColumn1
             // 
@@ -316,7 +351,8 @@ namespace BuySell
             // 
             // DeleteBuyerBtn
             // 
-            DeleteBuyerBtn.Location = new Point(148, 6);
+            DeleteBuyerBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            DeleteBuyerBtn.Location = new Point(748, 6);
             DeleteBuyerBtn.Name = "DeleteBuyerBtn";
             DeleteBuyerBtn.Size = new Size(136, 44);
             DeleteBuyerBtn.TabIndex = 3;
@@ -326,7 +362,8 @@ namespace BuySell
             // 
             // AddBuyerBtn
             // 
-            AddBuyerBtn.Location = new Point(6, 6);
+            AddBuyerBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            AddBuyerBtn.Location = new Point(606, 6);
             AddBuyerBtn.Name = "AddBuyerBtn";
             AddBuyerBtn.Size = new Size(136, 44);
             AddBuyerBtn.TabIndex = 2;
@@ -336,10 +373,9 @@ namespace BuySell
             // 
             // tabPageSearch
             // 
+            tabPageSearch.Controls.Add(cmbSortOptions);
             tabPageSearch.Controls.Add(label1);
-            tabPageSearch.Controls.Add(button1);
-            tabPageSearch.Controls.Add(rbSortByQuantity);
-            tabPageSearch.Controls.Add(rbSortByPrice);
+            tabPageSearch.Controls.Add(MakeDealBtn);
             tabPageSearch.Controls.Add(groupBox1);
             tabPageSearch.Controls.Add(dgvSearchResults);
             tabPageSearch.Location = new Point(4, 29);
@@ -349,50 +385,41 @@ namespace BuySell
             tabPageSearch.Text = "Пошук варіантів";
             tabPageSearch.UseVisualStyleBackColor = true;
             // 
+            // cmbSortOptions
+            // 
+            cmbSortOptions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            cmbSortOptions.FormattingEnabled = true;
+            cmbSortOptions.Items.AddRange(new object[] { "без сортування", "за ціною", "за обсягом" });
+            cmbSortOptions.Location = new Point(735, 132);
+            cmbSortOptions.Name = "cmbSortOptions";
+            cmbSortOptions.Size = new Size(151, 28);
+            cmbSortOptions.TabIndex = 6;
+            cmbSortOptions.SelectedIndexChanged += cmbSortOptions_SelectedIndexChanged;
+            // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Location = new Point(581, 138);
+            label1.Location = new Point(646, 135);
             label1.Name = "label1";
             label1.Size = new Size(83, 20);
             label1.TabIndex = 5;
             label1.Text = "Сортувати:";
             // 
-            // button1
+            // MakeDealBtn
             // 
-            button1.Location = new Point(428, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(463, 54);
-            button1.TabIndex = 4;
-            button1.Text = "Оформити угоду";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // rbSortByQuantity
-            // 
-            rbSortByQuantity.AutoSize = true;
-            rbSortByQuantity.Location = new Point(769, 136);
-            rbSortByQuantity.Name = "rbSortByQuantity";
-            rbSortByQuantity.Size = new Size(109, 24);
-            rbSortByQuantity.TabIndex = 3;
-            rbSortByQuantity.TabStop = true;
-            rbSortByQuantity.Text = "За обсягом";
-            rbSortByQuantity.UseVisualStyleBackColor = true;
-            rbSortByQuantity.CheckedChanged += rbSortByQuantity_CheckedChanged;
-            // 
-            // rbSortByPrice
-            // 
-            rbSortByPrice.AutoSize = true;
-            rbSortByPrice.Location = new Point(670, 136);
-            rbSortByPrice.Name = "rbSortByPrice";
-            rbSortByPrice.Size = new Size(93, 24);
-            rbSortByPrice.TabIndex = 2;
-            rbSortByPrice.TabStop = true;
-            rbSortByPrice.Text = "За ціною";
-            rbSortByPrice.UseVisualStyleBackColor = true;
-            rbSortByPrice.CheckedChanged += rbSortByPrice_CheckedChanged;
+            MakeDealBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            MakeDealBtn.Location = new Point(428, 12);
+            MakeDealBtn.Name = "MakeDealBtn";
+            MakeDealBtn.Size = new Size(463, 54);
+            MakeDealBtn.TabIndex = 4;
+            MakeDealBtn.Text = "Оформити угоду";
+            MakeDealBtn.UseVisualStyleBackColor = true;
+            MakeDealBtn.Click += MakeDealBtn_Click;
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(lblClientQuantity);
             groupBox1.Controls.Add(lblClientPrice);
             groupBox1.Controls.Add(lblClientProduct);
@@ -402,7 +429,7 @@ namespace BuySell
             groupBox1.Size = new Size(409, 157);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Вибраний клієнт";
+            groupBox1.Text = "Обраний клієнт";
             // 
             // lblClientQuantity
             // 
@@ -442,6 +469,7 @@ namespace BuySell
             // 
             // dgvSearchResults
             // 
+            dgvSearchResults.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvSearchResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSearchResults.Location = new Point(8, 166);
             dgvSearchResults.Name = "dgvSearchResults";
@@ -451,6 +479,7 @@ namespace BuySell
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(dgvArchive);
             tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
             tabPage4.Size = new Size(894, 420);
@@ -458,11 +487,121 @@ namespace BuySell
             tabPage4.Text = "Архів";
             tabPage4.UseVisualStyleBackColor = true;
             // 
+            // dgvArchive
+            // 
+            dgvArchive.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvArchive.AutoGenerateColumns = false;
+            dgvArchive.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvArchive.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvArchive.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn2, dealDateDataGridViewTextBoxColumn, sellerNameDataGridViewTextBoxColumn, buyerNameDataGridViewTextBoxColumn, productNameDataGridViewTextBoxColumn2, priceDataGridViewTextBoxColumn1, quantityDataGridViewTextBoxColumn2, SellerContact, BuyerContact, sellerFeedbackDataGridViewTextBoxColumn, buyerFeedbackDataGridViewTextBoxColumn });
+            dgvArchive.DataSource = dealBindingSource;
+            dgvArchive.Location = new Point(0, 3);
+            dgvArchive.MultiSelect = false;
+            dgvArchive.Name = "dgvArchive";
+            dgvArchive.ReadOnly = true;
+            dgvArchive.RowHeadersVisible = false;
+            dgvArchive.RowHeadersWidth = 51;
+            dgvArchive.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvArchive.Size = new Size(894, 417);
+            dgvArchive.TabIndex = 0;
+            // 
+            // dealBindingSource
+            // 
+            dealBindingSource.DataSource = typeof(Deal);
+            // 
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.DataPropertyName = "Id";
+            dataGridViewTextBoxColumn2.HeaderText = "Id";
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dealDateDataGridViewTextBoxColumn
+            // 
+            dealDateDataGridViewTextBoxColumn.DataPropertyName = "DealDate";
+            dealDateDataGridViewTextBoxColumn.HeaderText = "Дата угоди";
+            dealDateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            dealDateDataGridViewTextBoxColumn.Name = "dealDateDataGridViewTextBoxColumn";
+            dealDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sellerNameDataGridViewTextBoxColumn
+            // 
+            sellerNameDataGridViewTextBoxColumn.DataPropertyName = "SellerName";
+            sellerNameDataGridViewTextBoxColumn.HeaderText = "Ім'я продавця";
+            sellerNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            sellerNameDataGridViewTextBoxColumn.Name = "sellerNameDataGridViewTextBoxColumn";
+            sellerNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // buyerNameDataGridViewTextBoxColumn
+            // 
+            buyerNameDataGridViewTextBoxColumn.DataPropertyName = "BuyerName";
+            buyerNameDataGridViewTextBoxColumn.HeaderText = "Ім'я покупця";
+            buyerNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            buyerNameDataGridViewTextBoxColumn.Name = "buyerNameDataGridViewTextBoxColumn";
+            buyerNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // productNameDataGridViewTextBoxColumn2
+            // 
+            productNameDataGridViewTextBoxColumn2.DataPropertyName = "ProductName";
+            productNameDataGridViewTextBoxColumn2.HeaderText = "Найменування товару";
+            productNameDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            productNameDataGridViewTextBoxColumn2.Name = "productNameDataGridViewTextBoxColumn2";
+            productNameDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // priceDataGridViewTextBoxColumn1
+            // 
+            priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
+            priceDataGridViewTextBoxColumn1.HeaderText = "Ціна";
+            priceDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
+            priceDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // quantityDataGridViewTextBoxColumn2
+            // 
+            quantityDataGridViewTextBoxColumn2.DataPropertyName = "Quantity";
+            quantityDataGridViewTextBoxColumn2.HeaderText = "Обсяг товару";
+            quantityDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            quantityDataGridViewTextBoxColumn2.Name = "quantityDataGridViewTextBoxColumn2";
+            quantityDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // SellerContact
+            // 
+            SellerContact.DataPropertyName = "SellerContact";
+            SellerContact.HeaderText = "Контактні дані продавця";
+            SellerContact.MinimumWidth = 6;
+            SellerContact.Name = "SellerContact";
+            SellerContact.ReadOnly = true;
+            // 
+            // BuyerContact
+            // 
+            BuyerContact.DataPropertyName = "BuyerContact";
+            BuyerContact.HeaderText = "Контактні дані покупця";
+            BuyerContact.MinimumWidth = 6;
+            BuyerContact.Name = "BuyerContact";
+            BuyerContact.ReadOnly = true;
+            // 
+            // sellerFeedbackDataGridViewTextBoxColumn
+            // 
+            sellerFeedbackDataGridViewTextBoxColumn.DataPropertyName = "SellerFeedback";
+            sellerFeedbackDataGridViewTextBoxColumn.HeaderText = "Відгук продавця";
+            sellerFeedbackDataGridViewTextBoxColumn.MinimumWidth = 6;
+            sellerFeedbackDataGridViewTextBoxColumn.Name = "sellerFeedbackDataGridViewTextBoxColumn";
+            sellerFeedbackDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // buyerFeedbackDataGridViewTextBoxColumn
+            // 
+            buyerFeedbackDataGridViewTextBoxColumn.DataPropertyName = "BuyerFeedback";
+            buyerFeedbackDataGridViewTextBoxColumn.HeaderText = "Відгук покупця";
+            buyerFeedbackDataGridViewTextBoxColumn.MinimumWidth = 6;
+            buyerFeedbackDataGridViewTextBoxColumn.Name = "buyerFeedbackDataGridViewTextBoxColumn";
+            buyerFeedbackDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Form1
             // 
@@ -485,6 +624,9 @@ namespace BuySell
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSearchResults).EndInit();
+            tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvArchive).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dealBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -501,13 +643,6 @@ namespace BuySell
         private Button DeleteBuyerBtn;
         private Button AddBuyerBtn;
         private BindingSource sellerBindingSource;
-        private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn deliveryTermsDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn paymentTypeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
         private Button SearchBuyersBtn;
         private DataGridView dgvBuyers;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
@@ -516,19 +651,40 @@ namespace BuySell
         private DataGridView dgvSearchResults;
         private GroupBox groupBox1;
         private Label lblSearchRole;
-        private RadioButton rbSortByPrice;
-        private RadioButton rbSortByQuantity;
-        private Button button1;
+        private Button MakeDealBtn;
         private Label lblClientQuantity;
         private Label lblClientPrice;
         private Label lblClientProduct;
         private ContextMenuStrip contextMenuStrip1;
         private Label label1;
+        private DataGridView dgvArchive;
+        private ComboBox cmbSortOptions;
+        private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn NameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn deliveryTermsDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn paymentTypeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn maxPriceDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn paymentTypeDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn contactDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn1;
+        private BindingSource dealBindingSource;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dealDateDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn sellerNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn buyerNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn SellerContact;
+        private DataGridViewTextBoxColumn BuyerContact;
+        private DataGridViewTextBoxColumn sellerFeedbackDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn buyerFeedbackDataGridViewTextBoxColumn;
     }
 }
