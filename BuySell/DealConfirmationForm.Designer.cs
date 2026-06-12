@@ -36,7 +36,7 @@
             // lblInfo
             // 
             lblInfo.AutoSize = true;
-            lblInfo.Location = new Point(89, 9);
+            lblInfo.Location = new Point(89, 67);
             lblInfo.Name = "lblInfo";
             lblInfo.Size = new Size(50, 20);
             lblInfo.TabIndex = 0;
@@ -73,7 +73,7 @@
             Controls.Add(btnConfirm);
             Controls.Add(lblInfo);
             Name = "DealConfirmationForm";
-            Text = "Form2";
+            Text = "Підтвердження угоди";
             ResumeLayout(false);
             PerformLayout();
         }

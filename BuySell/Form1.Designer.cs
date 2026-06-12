@@ -496,6 +496,7 @@ namespace BuySell
             // 
             // dgvSearchResults
             // 
+            dgvSearchResults.AllowUserToDeleteRows = false;
             dgvSearchResults.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvSearchResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSearchResults.Location = new Point(8, 166);
@@ -516,6 +517,7 @@ namespace BuySell
             // 
             // dgvArchive
             // 
+            dgvArchive.AllowUserToDeleteRows = false;
             dgvArchive.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvArchive.AutoGenerateColumns = false;
             dgvArchive.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

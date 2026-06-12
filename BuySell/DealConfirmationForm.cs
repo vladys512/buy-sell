@@ -20,7 +20,6 @@ namespace BuySell
             int dealQuantity = Math.Min(seller.Quantity, buyer.Quantity);
             decimal totalSum = dealQuantity * seller.Price;
 
-            // Налаштуй ці лейбли у візуальному редакторі
             lblInfo.Text = $"Підготовка угоди:\n\n" +
                            $"Товар: {seller.ProductName}\n" +
                            $"Обсяг угоди: {dealQuantity} шт.\n" +
