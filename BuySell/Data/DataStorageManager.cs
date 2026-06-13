@@ -6,6 +6,10 @@ using BuySell.Services;
 
 namespace BuySell.Data
 {
+    /// <summary>
+    /// Менеджер збереження та завантаження бази даних.
+    /// Забезпечує серіалізацію та десеріалізацію стану системи у формат JSON 
+    /// </summary>
     public static class DataStorageManager
     {
         private const string FilePath = "exchange_database.json";

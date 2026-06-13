@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace BuySell
 {
+    /// <summary>
+    /// Модальне діалогове вікно для реєстрації нового запиту від покупця.
+    /// </summary>
     public partial class AddBuyerForm : Form
     {
         public Buyer _Buyer { get; private set; }

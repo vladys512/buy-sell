@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BuySell.Models
 {
+    /// <summary>
+    /// Клас, що представляє продавця на біржі товарів.
+    /// </summary>
     public class Seller
     {
         public Guid Id { get; private set; } // Унікальний ідентифікатор

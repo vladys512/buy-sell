@@ -5,7 +5,11 @@ using BuySell.Models;
 
 namespace BuySell.Services
 {
-    // Головний клас бізнес-логіки біржі
+    /// <summary>
+    /// Головний сервіс бізнес-логіки біржі товарів.
+    /// Відповідає за управління колекціями клієнтів (продавців, покупців, архіву), 
+    /// реалізує алгоритми пошуку варіантів та логіку оформлення угод.
+    /// </summary>
     public class ExchangeService
     {
         public BindingList<Seller> Sellers { get; set; }

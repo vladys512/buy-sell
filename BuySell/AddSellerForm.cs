@@ -13,6 +13,9 @@ using System.Xml.Linq;
 
 namespace BuySell
 {
+    /// <summary>
+    /// Модальне діалогове вікно для реєстрації нової пропозиції від продавця.
+    /// </summary>
     public partial class AddSellerForm : Form
     {
         public Seller _Seller { get; private set; }

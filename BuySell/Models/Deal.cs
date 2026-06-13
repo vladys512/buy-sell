@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BuySell.Models
 {
-    // Клас угоди
+    /// <summary>
+    /// Клас, що представляє угоду між продавцем та покупцем на біржі товарів.
+    /// </summary>
     public class Deal
     {
         public Guid Id { get; set; }

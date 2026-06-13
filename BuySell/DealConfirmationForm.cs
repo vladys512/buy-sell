@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace BuySell
 {
+    /// <summary>
+    /// Модальне вікно для підтвердження параметрів майбутньої угоди.
+    /// </summary>
     public partial class DealConfirmationForm : Form
     {
         public DealConfirmationForm(Seller seller, Buyer buyer)

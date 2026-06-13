@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BuySell.Models
 {
+    /// <summary>
+    /// Клас, що представляє покупця на біржі товарів.
+    /// </summary>
     public class Buyer
     {
         public Guid Id { get; private set; } // Унікальний ідентифікатор
