@@ -353,6 +353,26 @@ namespace BuySell
                         PerformSearch();
                         RefreshMainTables();
 
+                        using (SaveFileDialog sfd = new SaveFileDialog())
+                        {
+                            sfd.Filter = "Текстові файли (*.txt)|*.txt";
+                            sfd.FileName = $"Угода_{completedDeal.ProductName}_{completedDeal.DealDate:dd_MM_yyyy}.txt";
+                            sfd.Title = "Оберіть місце для збереження акту угоди";
+
+                            if (sfd.ShowDialog() == DialogResult.OK)
+                            {
+                                try
+                                {
+                                    string dealReport = AnnouncementService.GenerateDealAnnouncement(completedDeal);
+                                    System.IO.File.WriteAllText(sfd.FileName, dealReport, Encoding.UTF8);
+                                }
+                                catch (Exception)
+                                {
+                                    MessageBox.Show("Помилка при створенні текстового файлу угоди.", "Помилка збереження", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+
                         var sellerFeedback = MessageBox.Show(
                             $"Угоду оформлено.\n\nЧи задоволений ПРОДАВЕЦЬ (контакт: {completedDeal.SellerContact}) умовами та проведенням операції?",
                             "Опитування сторін: Продавець",
@@ -413,7 +433,6 @@ namespace BuySell
                         System.IO.File.WriteAllText(sfd.FileName, announcement);
                         MessageBox.Show("Оголошення успішно збережено та готове до друку!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        // За бажанням: автоматично відкрити файл у Блокноті
                         System.Diagnostics.Process.Start("notepad.exe", sfd.FileName);
                     }
                     catch (Exception)

@@ -59,5 +59,34 @@ namespace BuySell.Services
 
             return sb.ToString();
         }
+        /// <summary>
+        /// Формує текстовий звіт (акт) для укладеної угоди
+        /// </summary>
+        public static string GenerateDealAnnouncement(Deal deal)
+        {
+            if (deal == null) return string.Empty;
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("==================================================");
+            sb.AppendLine("           АКТ ПРО УКЛАДАННЯ УГОДИ                ");
+            sb.AppendLine("==================================================");
+            sb.AppendLine($"Дата та час: {deal.DealDate:dd.MM.yyyy HH:mm}");
+            sb.AppendLine("--------------------------------------------------");
+            sb.AppendLine($"Предмет угоди (Товар): {deal.ProductName}");
+            sb.AppendLine($"Обсяг партії: {deal.Quantity} шт.");
+            sb.AppendLine($"Фіксована ціна за одиницю: {deal.Price:N2} грн");
+            sb.AppendLine($"ЗАГАЛЬНА СУМА УГОДИ: {deal.Quantity * deal.Price:N2} грн");
+            sb.AppendLine("--------------------------------------------------");
+            sb.AppendLine("ВІДОМОСТІ ПРО ПРОДАВЦЯ:");
+            sb.AppendLine($"Ім'я/Організація: {deal.SellerName}");
+            sb.AppendLine($"Контактні дані: {deal.SellerContact}");
+            sb.AppendLine("--------------------------------------------------");
+            sb.AppendLine("ВІДОМОСТІ ПРО ПОКУПЦЯ:");
+            sb.AppendLine($"Ім'я/Організація: {deal.BuyerName}");
+            sb.AppendLine($"Контактні дані: {deal.BuyerContact}");
+            sb.AppendLine("==================================================");
+
+            return sb.ToString();
+        }
     }
 }
