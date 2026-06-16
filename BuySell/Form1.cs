@@ -202,8 +202,12 @@ namespace BuySell
                 lblClientPrice.Text = $"Ціна продавця: {_currentSearchSeller.Price} грн";
                 lblClientQuantity.Text = $"Обсяг: {_currentSearchSeller.Quantity} шт.";
             }
-            else if (_currentSearchBuyer != null)
+            if (_currentSearchBuyer != null)
             {
+                lblClientPrice.Visible = true;
+                lblClientProduct.Visible = true;
+                lblClientQuantity.Visible = true;
+                lblSearchRole.Visible = true;
                 lblSearchRole.Text = "Шукаємо: ПРОДАВЦІВ для обраного покупця";
                 lblClientProduct.Text = $"Товар: {_currentSearchBuyer.ProductName}";
                 lblClientPrice.Text = $"Готовий заплатити до: {_currentSearchBuyer.MaxPrice} грн";
